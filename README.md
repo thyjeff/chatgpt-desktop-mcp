@@ -15,6 +15,25 @@ It uses Streamable HTTP MCP on:
 
 ## 1) Install
 
+Quick start:
+
+```powershell
+git clone https://github.com/thyjeff/chatgpt-desktop-mcp.git
+cd chatgpt-desktop-mcp
+npm install
+```
+
+If you do not have `cloudflared` installed yet, install it first (Windows):
+
+```powershell
+winget install Cloudflare.cloudflared
+```
+
+Do not run this as one line:
+`npm install cloudflared tunnel --protocol http2 --url http://localhost:8787`
+
+Use these as separate commands instead:
+
 ```powershell
 cd "C:\path\to\chatgpt-desktop-mcp"
 npm install
