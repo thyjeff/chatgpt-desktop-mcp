@@ -8,12 +8,6 @@ This is a local MCP server that exposes desktop-style tools similar to DesktopCo
 - `search_files`
 - `run_command`
 
-## Demo Screenshot
-
-Add your screenshot file at `assets/demo.png`, then this preview will render on GitHub:
-
-![MCP Demo](assets/demo.png)
-
 It uses Streamable HTTP MCP on:
 
 - `POST/GET/DELETE /mcp`
@@ -26,39 +20,51 @@ cd "C:\path\to\chatgpt-desktop-mcp"
 npm install
 ```
 
-## 2) Run
+## 2) Run Local MCP Server
 
-Set your allowed folders first (important):
+Start the server (keep this terminal open):
 
 ```powershell
-$env:ALLOWED_ROOTS="C:\Projects;D:\Workspace"
+$env:ALLOWED_ROOTS="*"
+$env:APPROVAL_ENABLED="false"
 $env:PORT="8787"
 node .\src\server.js
 ```
 
-Server URL:
+Local MCP URL:
 
 - `http://localhost:8787/mcp`
 
-## 3) Connect from ChatGPT App
+## 3) Create Temporary Public URL (Cloudflare)
 
-In the ChatGPT custom MCP server form:
-
-1. `MCP Server URL`: `http://localhost:8787/mcp` (or your tunneled HTTPS URL).
-2. `Authentication`: choose none if available.
-3. Create the app/tool.
-
-If the app requires a public HTTPS URL, run a tunnel:
+Open a second terminal and run:
 
 ```powershell
-ngrok http 8787
+cloudflared tunnel --protocol http2 --url http://localhost:8787
 ```
 
-Then use:
+Copy the printed URL, then append `/mcp`:
 
-- `https://<your-ngrok-subdomain>.ngrok-free.app/mcp`
+- `https://<random>.trycloudflare.com/mcp`
 
-## 4) Example prompts
+## 4) Add to ChatGPT App
+
+In the ChatGPT custom MCP form:
+
+1. `MCP Server URL`: `https://<random>.trycloudflare.com/mcp`
+2. `Authentication`: `None` (if available)
+3. Create connector
+
+## 5) Verify
+
+Check health endpoints:
+
+- Local: `http://localhost:8787/health`
+- Public: `https://<random>.trycloudflare.com/health`
+
+If public health shows a Cloudflare error page, restart the tunnel and use the new URL.
+
+## Example Prompts
 
 - `List files in C:\Projects\chatgpt-desktop-mcp`
 - `Read file C:\Projects\chatgpt-desktop-mcp\README.md`
