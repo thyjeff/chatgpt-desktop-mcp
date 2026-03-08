@@ -22,7 +22,7 @@ It uses Streamable HTTP MCP on:
 ## 1) Install
 
 ```powershell
-cd "F:\bash\chatgpt-desktop-mcp"
+cd "C:\path\to\chatgpt-desktop-mcp"
 npm install
 ```
 
@@ -31,7 +31,7 @@ npm install
 Set your allowed folders first (important):
 
 ```powershell
-$env:ALLOWED_ROOTS="F:\bash;D:\Pro"
+$env:ALLOWED_ROOTS="C:\Projects;D:\Workspace"
 $env:PORT="8787"
 node .\src\server.js
 ```
@@ -60,10 +60,10 @@ Then use:
 
 ## 4) Example prompts
 
-- `List files in F:\bash\chatgpt-desktop-mcp`
-- `Read file F:\bash\chatgpt-desktop-mcp\README.md`
-- `Run command "npm -v" in F:\bash\chatgpt-desktop-mcp`
-- `Write a file F:\bash\chatgpt-desktop-mcp\notes.txt with content hello`
+- `List files in C:\Projects\chatgpt-desktop-mcp`
+- `Read file C:\Projects\chatgpt-desktop-mcp\README.md`
+- `Run command "npm -v" in C:\Projects\chatgpt-desktop-mcp`
+- `Write a file C:\Projects\chatgpt-desktop-mcp\notes.txt with content hello`
 
 ## Notes
 
@@ -99,4 +99,4 @@ Config:
 Full filesystem mode:
 
 - `ALLOWED_ROOTS=*` for unrestricted access
-- Or set specific roots, e.g. `F:\bash;D:\`
+- Or set specific roots, e.g. `C:\Projects;D:\Workspace`
