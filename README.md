@@ -8,6 +8,10 @@ This is a local MCP server that exposes desktop-style tools similar to DesktopCo
 - `search_files`
 - `run_command`
 
+## Demo Screenshot
+
+![MCP Demo](assets/demo.png)
+
 It uses Streamable HTTP MCP on:
 
 - `POST/GET/DELETE /mcp`
